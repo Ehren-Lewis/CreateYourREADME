@@ -11,25 +11,26 @@ const fs = require('fs');
 // TODO: Create an array of questions for user input
 const questions = [
     // Author
-    "Who is the author of the README?",
+    "Who is the author of the README?\n",
     // About this Project
-    "What does your application do?",
-    "What was your motivation behind the project?",
-    "Why did you use the technologies you used?",
-    "What're some challenges you faced during creation?",
-    "What're your goals for future implications?",
+    "What does your application do?\n",
+    "What was your motivation behind the project?\n",
+    "Why did you use the technologies you used?\n",
+    "What're some challenges you faced during creation?\n",
+    "What're your goals for future implications?\n",
     // Table of Contents 
-    ["Would you like a table of contents?"],
+    "Would you like a table of contents?",
     // How to install
     // Listed below
     // Usage
-    "How would you describe using this project?",
+    "How would you describe using this project?\n",
     // Images
-    "Would you like to include any images?",
-    "How many images?",
-    "Please provide the alt text for image number",
-    "Please provide the link for image number",
-    "Would you like to include a license?"
+    "Would you like to include any images?\n",
+    // "How many images?",
+    // "Please provide the alt text for image number\n",
+    // "Please provide the link for image number\n",
+    "Were there any other contributors in this project?\n",
+    "Would you like to include a license?\n"
 
 ];
 
@@ -63,6 +64,65 @@ const createAuthor = () => {
     console.log
 }
 
-const names = readline.question('Who is the author?');
+// const names = readline.question('Who is the author?');
 
-console.log(names);
+// console.log(names);
+
+const setAuthor = () => {
+    let tempAuthor = readline.question(questions[0]);
+    if (readline.keyInYN(`Is ${tempAuthor} the proper name?\n`)) {
+        console.log(`Setting author as... ${tempAuthor}\n`);
+        return tempAuthor
+    } else {
+        console.log("Trying again...\n");
+        setAuthor();
+
+    }
+}
+
+// About this project 
+const describeApplication = () => {
+    let tempDescription = readline.question(questions[1]);
+    // Do later 
+}
+
+const describeMotivation = () => {
+    let tempMotivation = readline.question(questions[2]);
+}
+
+const describeChallenges = () => {
+    let tempChallenges = readline.question(questions[3]);
+}
+
+const describeTechnologies = () => {
+    let tempTechnologies = readline.question(questions[4]);
+}
+
+const describeFutureGoals = () => {
+    let tempGoals = readline.question(questions[5]);
+}
+
+
+// Table of Contents 
+const describeTOC = () => {
+    let tempTOC = readline.question(questions[6]);
+}
+
+// Usage 
+const describeUsage = () => {
+    let tempUsage = readline.question(questions[7]);
+}
+
+// Usage Images 
+const describeImgaes = () => {
+    let tempImages = readline.question(questions[8]);
+}
+
+const describeContrubutors = () => {
+    let tempContributors = readline.question(questions[9]);
+}
+
+// License 
+const describeLicense = () => {
+    let tempLicense = readline.question(questions[10]);
+}
