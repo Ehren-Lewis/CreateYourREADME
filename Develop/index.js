@@ -158,3 +158,5 @@ type:"input"
 }, (error) => {
     console.log(error)
 })
+
+// socket io vs websockets 
