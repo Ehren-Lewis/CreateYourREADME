@@ -7,29 +7,34 @@
 
 const readline = require('readline-sync');
 const fs = require('fs');
+const { default: inquirer } = require('inquirer');
 
 // TODO: Create an array of questions for user input
 const questions = [
-    // Author
+    // Title input
+    "What is the title of the application?\n",
+    // Author input
     "Who is the author of the README?\n",
-    // About this Project
+    // About this Project input
     "What does your application do?\n",
     "What was your motivation behind the project?\n",
     "Why did you use the technologies you used?\n",
     "What're some challenges you faced during creation?\n",
     "What're your goals for future implications?\n",
-    // Table of Contents 
+    // Table of Contents y/n
     "Would you like a table of contents?",
     // How to install
     // Listed below
-    // Usage
+    // Usage y/n
     "How would you describe using this project?\n",
-    // Images
+    // Images y/n
     "Would you like to include any images?\n",
     // "How many images?",
     // "Please provide the alt text for image number\n",
     // "Please provide the link for image number\n",
+    //  Contributors y/n
     "Were there any other contributors in this project?\n",
+    // License y/n
     "Would you like to include a license?\n"
 
 ];
@@ -57,72 +62,44 @@ const howToInstall = [
     "2. Copy the files from the developer tools into your own files"
 ];
 
+const prompt = inquirer.createPromptModule();
 
-// console.log(howToInstall);
+prompt([ {
 
-const createAuthor = () => {
-    console.log
+    "name": "title",
+    "message": questions[0],
+    "type": "input"
+}, {
+    "name": "author",
+    "message": questions[1],
+    "type": "input"
+},  {
+    "name": "desribeFunction",
+    "message": questions[2],
+    "type": "input"
+},  {
+    "name": "describeMotivation",
+    "message": questions[3],
+    "type": "input"
+},  {
+    "name": "describeTechnologies",
+    "message": questions[4],
+    "type": "input"
+},  {
+    "name": "describeChallenges",
+    "message": questions[5],
+    "type": "input"
+},  {"name": "futureGoals",
+    "message": questions[6],
+    "type": "input"
+},  {
+    "name": "yesTableOfContents",
+    "message": questions[7],
 }
 
-// const names = readline.question('Who is the author?');
-
-// console.log(names);
-
-const setAuthor = () => {
-    let tempAuthor = readline.question(questions[0]);
-    if (readline.keyInYN(`Is ${tempAuthor} the proper name?\n`)) {
-        console.log(`Setting author as... ${tempAuthor}\n`);
-        return tempAuthor
-    } else {
-        console.log("Trying again...\n");
-        setAuthor();
-
-    }
-}
-
-// About this project 
-const describeApplication = () => {
-    let tempDescription = readline.question(questions[1]);
-    // Do later 
-}
-
-const describeMotivation = () => {
-    let tempMotivation = readline.question(questions[2]);
-}
-
-const describeChallenges = () => {
-    let tempChallenges = readline.question(questions[3]);
-}
-
-const describeTechnologies = () => {
-    let tempTechnologies = readline.question(questions[4]);
-}
-
-const describeFutureGoals = () => {
-    let tempGoals = readline.question(questions[5]);
-}
-
-
-// Table of Contents 
-const describeTOC = () => {
-    let tempTOC = readline.question(questions[6]);
-}
-
-// Usage 
-const describeUsage = () => {
-    let tempUsage = readline.question(questions[7]);
-}
-
-// Usage Images 
-const describeImgaes = () => {
-    let tempImages = readline.question(questions[8]);
-}
-
-const describeContrubutors = () => {
-    let tempContributors = readline.question(questions[9]);
-}
-
-// License 
-const describeLicense = () => {
-    let tempLicense = readline.question(questions[10]);
-}
+]).then( (answers) => {
+    console.log(answers);
+}).catch( (error) => {
+    console.log('An error occured');
+    console.assert(error);
+});
