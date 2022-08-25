@@ -1,11 +1,8 @@
-// TODO: Include packages needed for this application
 
-// const readline = require('readline-sync');
-// const fs = require('fs');
+import readline from 'readline-sync';
 import inquirer from 'inquirer';
-import fs from 'fs';
-import generateMarkdown from  './utils/generateMarkdown.js'
-// TODO: Create an array of questions for user input
+import fs, { read, realpath } from 'fs';
+
 const questions = [
     // Title input
     "What is the title of the application?\n",
@@ -21,17 +18,14 @@ const questions = [
     "Input your table of contents, separated by commas\n",
     // How to install
     // Listed below
-    // Usage y/n
+    // Usage
     "How would you describe using this project?\n",
     // Images y/n
     "Would you like to include any images?\n",
-    // "How many images?",
-    // "Please provide the alt text for image number\n",
-    // "Please provide the link for image number\n",
-    //  Contributors commas
-    "Insert any contributors that assisted with the project\n",
-    // License y/n
-    "Enter a license used\n",
+    //  Contributors y/n
+    "Would you like to include any contributors?\n",
+    // License list
+    "Please pick a license\n",
 
     "Please enter your GitHub username\n",
     "Please enter the link to your Github\n",
@@ -59,12 +53,64 @@ const howToInstall = [
     `
 ];
 
+const setImages = (i) => {
+    const currentAlt = readline.question(`What is the alt text? for image ${ i+ 1} `)
+    const linkToImage = readline.question(`What is the link to image ${i + 1} `);
+    return `![${currentAlt}](${linkToImage})\n`;
+}
+
+
+const boolImages = readline.keyInYNStrict("Would you like to include images")   ;
+var returnImages = ``;
+if (boolImages) {
+    let numberOfImages = readline.question("how many images?\n");   
+    for (let i = 0; i < numberOfImages; i++) {
+        returnImages += setImages(i);
+    }
+}
+// console.log(returnImages);
+
+// contribs 
+
+const setContribs = (i) => {
+    const contribName = readline.question(`What is the name of contributor ${i}? `);
+    return `${contribName}\n`;
+}
+
+const boolContribs = readline.keyInYNStrict("Would you like to include contributors?");
+var returnContribs = ``;
+if (boolContribs) {
+    let numberofContribs = readline.question("How many contributors? ")
+    for (let i = 0; i < numberofContribs ; i++) {
+        returnContribs += setContribs(i);
+    }
+}
+
+// toc 
+const setTOC = (i) => {
+    const tocSection = readline.question(`What is the name of this table of content section? ${i}? `);
+    return `[${tocSection}](#${tocSection}\n`;
+}
+
+const boolTOC = readline.keyInYNStrict("Would you like to include a Table of Contents?");
+var returnSections = ``;
+if (boolTOC) {
+    console.log("(An example would be description, installation, and usage sections")
+    let numberOfSections = readline.question("How many sections? ")
+    for (let i = 0; i < returnSections ; i++) {
+        returnSections += setTOC(i);
+    }
+} 
+
+const readLineReturns = {
+    boolImages: returnImages,
+    boolContribs: returnContribs,
+    boolTOC: returnSections
+}
+
 const prompt = inquirer.createPromptModule();
-
-
-
-prompt([ {
-
+prompt([ 
+{
     "name": "title",
     "message": questions[0],
     "type": "input"
@@ -91,27 +137,48 @@ prompt([ {
 },  {"name": "futureGoals",
     "message": questions[6],
     "type": "input"
-},  {
-    "name": "yesTableOfContents", // type: confirm
+}
+,  
+ {
+    "name": "isTableOfContents", // type: confirm
     "message": questions[7],
-    "type": "input"
+    "type": "confirm"
 },  {
     "name": "describeUsage",
     "message": questions[8],
     "type": "input"
+}, {
+    "name": "isImages",
+    "message": questions[9],
+    "type": "confirm"
+}, {
+    "name": "isContribs",
+    "message": questions[10],
+    "type": "confirm",
+}, {
+    "name": "chosenLicense",
+    "message": questions[11],
+    "type": "list",
+    "choices": ["MIT", "Not MIT"]
 }
 ]).then( (answers) => {
-    let data = generateMarkdown([answers, howToInstall]);
+    // let data = generateMarkdown([answers, litest]);
+    console.log(answers);
+    if (answers.isImages) {
+        var numberOfImages = readline.question("how many images would you like?\n");
+        console.log(numberOfImages);
+    }
+})
 
 
-}).catch( (error) => {
+.catch( (error) => {
     console.log('An error occured, please try again');
     console.log(error);
 });
 
 
 
-const imgPrompt = () => {
+// const imgPrompt = () => {
 
-}
+// }
 

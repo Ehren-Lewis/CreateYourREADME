@@ -16,13 +16,15 @@ function renderLicenseSection(license) {
 
 // TODO: Create a function to generate markdown for README
 
+// Need to add boolImages, boolContribs, boolTOC, boolLicense
+
 function generateMarkdown(data) {
   // return `# ${data.title}
   const [answers, howToInstall]  = data;
 
-  const contribBool = Boolean(ansers.letContribs)
+  const contribBool = Boolean(answers.letContribs)
 
-  return `
+  console.log( `
   # ${answers.title}
 
   Author: ${answers.author}
@@ -50,13 +52,39 @@ function generateMarkdown(data) {
   ##Usage
 
   ${answers.describeUsage}
+
+  
+
+  ${contribBool ? `## Contributors` : ""}
+
+  ${contribBool? returnContribs : ""}
+
+
+
+
+
   ` 
-  ;
+  );
 }
 
 const spreadHowTo = (arr) => {
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // module.exports = generateMarkdown;
 export default generateMarkdown;
