@@ -1,14 +1,10 @@
 // TODO: Include packages needed for this application
 
-// const readline = require('readline').createInterface({
-//     input: process.stdin,
-//     output: process.stdout
-// });
-
-const readline = require('readline-sync');
-const fs = require('fs');
-const { default: inquirer } = require('inquirer');
-
+// const readline = require('readline-sync');
+// const fs = require('fs');
+import inquirer from 'inquirer';
+import fs from 'fs';
+import generateMarkdown from  './utils/generateMarkdown.js'
 // TODO: Create an array of questions for user input
 const questions = [
     // Title input
@@ -22,7 +18,7 @@ const questions = [
     "What're some challenges you faced during creation?\n",
     "What're your goals for future implications?\n",
     // Table of Contents y/n
-    "Would you like a table of contents?",
+    "Input your table of contents, separated by commas\n",
     // How to install
     // Listed below
     // Usage y/n
@@ -32,11 +28,14 @@ const questions = [
     // "How many images?",
     // "Please provide the alt text for image number\n",
     // "Please provide the link for image number\n",
-    //  Contributors y/n
-    "Were there any other contributors in this project?\n",
+    //  Contributors commas
+    "Insert any contributors that assisted with the project\n",
     // License y/n
-    "Would you like to include a license?\n"
+    "Enter a license used\n",
 
+    "Please enter your GitHub username\n",
+    "Please enter the link to your Github\n",
+    "Please enter your email address\n",
 ];
 
 // TODO: Create a function to write README file
@@ -51,18 +50,18 @@ function init() {
 init();
 
 const howToInstall = [
-    "#How to Install",
-    "1. Navigate to the code repository",
-    "2. Press the green code button, located near the about section",
-    "3. Copy either the HTTPS, Git CLI, download the zip, open with GitHub desktop, or copy the SSH link.",
-    "4. Depending on download method, use Git, executable, or the desktop application to open the content files",
-    "5. All of the content of the repository will be available after completion of the previous state.",
-    "#OR",
-    "1. Visit the live site",
-    "2. Copy the files from the developer tools into your own files"
+    `
+    1. Navigate to the code repository
+    2. Press the green code button, located near the about section
+    3. Copy either the HTTPS, Git CLI, download the zip, open with GitHub desktop, or copy the SSH link.
+    4. Depending on download method, use Git, executable, or the desktop application to open the content files.
+    5. All of the content of the repository will be available after completion of the previous state.
+    `
 ];
 
 const prompt = inquirer.createPromptModule();
+
+
 
 prompt([ {
 
@@ -74,7 +73,7 @@ prompt([ {
     "message": questions[1],
     "type": "input"
 },  {
-    "name": "desribeFunction",
+    "name": "describeFunction",
     "message": questions[2],
     "type": "input"
 },  {
@@ -93,13 +92,26 @@ prompt([ {
     "message": questions[6],
     "type": "input"
 },  {
-    "name": "yesTableOfContents",
+    "name": "yesTableOfContents", // type: confirm
     "message": questions[7],
+    "type": "input"
+},  {
+    "name": "describeUsage",
+    "message": questions[8],
+    "type": "input"
+}
+]).then( (answers) => {
+    let data = generateMarkdown([answers, howToInstall]);
+
+
+}).catch( (error) => {
+    console.log('An error occured, please try again');
+    console.log(error);
+});
+
+
+
+const imgPrompt = () => {
+
 }
 
-]).then( (answers) => {
-    console.log(answers);
-}).catch( (error) => {
-    console.log('An error occured');
-    console.assert(error);
-});
