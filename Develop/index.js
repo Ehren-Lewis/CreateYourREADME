@@ -117,15 +117,13 @@ if (boolTests) {
 }
 
 let tocStatic = `
-    * [About This Project](#about-this-project)
-    * [How to Install](#how-to-install)
-    * [Usage](#usage)
-    ${boolContribs ? "* [Tests](#contributors)" : ""}
-    ${boolTests ? "* [Tests](#tests)" : ""}
-    * [Known Issues](#known-issues)
-    * [Questions](#questions)
-
-
+* [About This Project](#about-this-project)
+* [How to Install](#how-to-install)
+* [Usage](#usage)
+${boolContribs ? "* [Tests](#contributors)" : ""}
+${boolTests ? "* [Tests](#tests)" : ""}
+* [Known Issues](#known-issues)
+* [Questions](#questions)
 `
 
 
