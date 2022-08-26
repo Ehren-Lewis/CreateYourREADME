@@ -30,13 +30,13 @@ function generateMarkdown(data) {
 
   // ## Table Of Contents
 
-  ${readLineReturns.tableOfContents.state ? "## Table Of Contents" : ""}
+  ${readLineReturns.tableOfContents.value ? "## Table Of Contents" : ""}
 
-  ${readLineReturns.tableOfContents.state ? readLineReturns.tableOfContents.value : ""}
+  ${readLineReturns.tableOfContents.value ? readLineReturns.tableOfContents.value : ""}
   
   ## About This Project
 
-  ${answers.desrcibeFunction}
+  ${answers.describeFunction}
 
   ${answers.describeMotivation}
 
@@ -53,12 +53,22 @@ function generateMarkdown(data) {
 
   ${answers.describeUsage}
 
-  ${readLineReturns.images.state ? readLineReturns.images.value : ""}
+  ${readLineReturns.images.value ? readLineReturns.images.value : ""}
 
   ${readLineReturns.contributors.value ? `## Contributors` : ""}
 
-  ${readLineReturns.contributors.state? readLineReturns.contributors.value : ""}
+  ${readLineReturns.contributors.value? readLineReturns.contributors.value : ""}
+
+  ## Questions
+
+  You can reach me at my Github: [${answers.githubUsername}](${answers.linkToGithub})
+
+  ## OR
+
+  You can reach me at my [${answers.email}](mailto:${answers.email}) pertaining any other questions you may have
   ` 
+
+
   ;
 }
 

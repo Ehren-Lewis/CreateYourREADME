@@ -1,25 +1,26 @@
 
-  # Your mom
+  # This is an almost complete readme test
 
-  Author: Your mom
+  Author: I am
   
 
   // ## Table Of Contents
 
   ## Table Of Contents
 
-  [Description](#Description
+  [About This Project](#About This Project)
+[How to Install](#How to Install)
 
   
   ## About This Project
 
-  undefined
+  It works on generating a readme automatically for you
 
-  to do your mom
+  To try and automate an aspect ofmy life to make it easier
 
-  oh you know, the usual
+  I used JavaScript, Inquirer, Readline-sync, fs, and node
 
-  oh I faced ample challenges
+  Using the asyn feature of promises in inquirer
 
   
   ## How to Install
@@ -32,15 +33,24 @@
     5. All of the content of the repository will be available after completion of the previous state.
     
 
-  ##Usage
+  ## Usage
 
-  it was magnificent
+  This project is to be used by developers who would like to create their own readme use things
 
-  ![alt1](./b)
-![alt2](./a)
+  ![alt1](./)
+![al2](./b)
 
 
   ## Contributors
 
-  
+  My brother
+
+
+  ## Questions
+
+  You can reach me at my Github: [Ehren-Lewis](https://github.com/Ehren-Lewis)
+
+  ## OR
+
+  You can reach me at my [email@email.com](mailto:email@email.com) pertaining any other questions you may have
   

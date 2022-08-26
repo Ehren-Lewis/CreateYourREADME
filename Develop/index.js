@@ -121,8 +121,6 @@ const readLineReturns = {
     }
 }
 
-console.log(readLineReturns.tableOfContents.state);
-
 
 const prompt = inquirer.createPromptModule();
 prompt([ 
@@ -162,6 +160,18 @@ prompt([
     "message": questions[11],
     "type": "list",
     "choices": ["MIT", "Not MIT"]
+},  {
+    "name": "githubUsername",
+    "message": "What is your Github",
+    "type": "input"
+}, {
+    "name": "linkToGithub",
+    "message": "Enter the link to your github",
+    "type": "input"
+}, {
+    "name": "email",
+    "message": "What is your email addess?",
+    "type": "input"
 }
 ]).then( (answers) => {
     let data = generateMarkdown([answers, readLineReturns, litest]);
