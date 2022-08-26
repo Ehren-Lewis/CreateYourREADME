@@ -110,10 +110,10 @@ if (boolTOC) {
     returnSections += `* [Questions](#questions)\n`;
 } 
 
-const boolTests = readline.keyInYNStrict("Would you like to include how to run the tests if there are any?");
+const boolTests = readline.keyInYNStrict("Would you like to include how to run the tests if there are any? ");
 var describeTests = ``;
 if (boolTests) {
-    describeTests = readline.question("Please input the description on how to test")
+    describeTests = readline.question("Please input the description on how to test: ")
 }
 
 let tocStatic = `
@@ -205,11 +205,11 @@ prompt([
     "type": "input"
 }, {
     "name": "readMeFileName",
-    "question": "enter the name of the file without the .md",
+    "message": "enter the name of the file without the .md",
     "type": "input",
 }, {
     "name": "issues",
-    "question": "please describe any issues in the application",
+    "message": "please describe any issues in the application",
     "input": "input"
 }
 ]).then( (answers) => {
