@@ -43,7 +43,7 @@ function init() {
 // Function call to initialize app
 init();
 
-const litest =
+const howToInstall =
     `
     1. Navigate to the code repository
     2. Press the green code button, located near the about section
@@ -79,12 +79,12 @@ const setContribs = (i) => {
     return `${contribName}\n`;
 }
 
-const boolContribs = readline.keyInYNStrict("Would you like to include contributors?");
-var returnContribs = ``;
-if (boolContribs) {
+const boolCredits = readline.keyInYNStrict("Would you like to include contributors in the credits??");
+var returnCredits = ``;
+if (boolCredits) {
     let numberofContribs = readline.question("How many contributors? ")
     for (let i = 0; i < numberofContribs ; i++) {
-        returnContribs += setContribs(i);
+        returnCredits += setContribs(i);
     }
 }
 
@@ -99,16 +99,16 @@ const setTOC = (i) => {
 
 const boolTOC = readline.keyInYNStrict("Would you like to include a Table of Contents?");
 var returnSections = ``;
-if (boolTOC) {
-    // console.log("(An example would be description, installation, and usage sections")
-    let numberOfSections = readline.question("How many sections? ")
-    for (let i = 0; i < numberOfSections ; i++) {
-        returnSections += setTOC(i);
-    }
+// if (boolTOC) {howToInstall
+//     // console.log("(An example would be description, installation, and usage sections")
+//     let numberOfSections = readline.question("How many sections? ")
+//     for (let i = 0; i < numberOfSections ; i++) {
+//         returnSections += setTOC(i);
+    // }
 
-    returnSections +=  `* [Usage](#usage)\n`;
-    returnSections += `* [Questions](#questions)\n`;
-} 
+    // returnSections +=  `* [Usage](#usage)\n`;
+//     returnSections += `* [Questions](#questions)\n`;
+// } 
 
 const boolTests = readline.keyInYNStrict("Would you like to include how to run the tests if there are any? ");
 var describeTests = ``;
@@ -120,10 +120,12 @@ let tocStatic = `
 * [About This Project](#about-this-project)
 * [How to Install](#how-to-install)
 * [Usage](#usage)
-${boolContribs ? "* [Tests](#contributors)" : ""}
-${boolTests ? "* [Tests](#tests)" : ""}
 * [Known Issues](#known-issues)
+${boolTests ? "* [Tests](#tests)" : ""}
+${boolCredits ? "* [Credits](#credits)" : ""}
 * [Questions](#questions)
+* [Contributing](#contributing)
+* [License](#license)
 `
 
 
@@ -133,8 +135,8 @@ const readLineReturns = {
         value: returnImages,
     },
     "contributors": {
-        state: boolContribs,
-        value: returnContribs,
+        state: boolCredits,
+        value: returnCredits,
     },
     // "tableOfContents": {
     //     state: boolTOC,
@@ -188,8 +190,16 @@ prompt([
     "name": "chosenLicense",
     "message": questions[11],
     "type": "list",
-    "choices": ["MIT", "Not MIT"]
-},  {
+    "choices": [
+        "Apache", "BSD3", "GNU",
+    "MIT", "MOZILLA", "COMMON", "ECLIPSE"]
+}, {
+    "name": "yearForLicense",
+    "message": "Please pick a year for the license",
+    "type": "input"
+},
+
+{
     "name": "githubUsername",
     "message": "What is your Github",
     "type": "input"
@@ -211,7 +221,11 @@ prompt([
     "input": "input"
 }
 ]).then( (answers) => {
-    let data = generateMarkdown([answers, readLineReturns, litest]);
+    let licenseBadge = renderLicenseLinkAndBadge([answers.chosenLicense]);
+    let licenseSection = renderLicenseSection(answers.chosenLicense, answers.author, answers.yearForLicense);
+    let licnseInformationComplete = [licenseBadge, licenseSection]
+    let data = generateMarkdown([answers, readLineReturns, howToInstall, licnseInformationComplete]);
+
     fs.writeFile(`${answers.readMeFileName}.md`, data, (err) => {
         if (err) {
             console.log(err);
