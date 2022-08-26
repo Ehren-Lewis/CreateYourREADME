@@ -7,7 +7,6 @@
     * [About This Project](#about-this-project)
     * [How to Install](#how-to-install)
     * [Usage](#usage)
-    
     * [Tests](#tests)
     * [Known Issues](#known-issues)
     * [Questions](#questions)
