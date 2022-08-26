@@ -2,7 +2,8 @@
 import readline from 'readline-sync';
 import inquirer from 'inquirer';
 import fs, { read, realpath } from 'fs';
-import generateMarkdown from './utils/generateMarkdown.js';
+import utilsFunctions from './utils/generateMarkdown.js';
+const {generateMarkdown, renderLicenseLinkAndBadge, renderLicenseSection } = utilsFunctions;
 const questions = [
     // Title input
     "What is the title of the application?\n",
@@ -53,14 +54,11 @@ const howToInstall =
     `
 ;
 
-
-
 const setImages = (i) => {
     const currentAlt = readline.question(`What is the alt text? for image ${ i+ 1} `)
     const linkToImage = readline.question(`What is the link to image ${i + 1} `);
     return `![${currentAlt}](${linkToImage})\n`;
 }
-
 
 const boolImages = readline.keyInYNStrict("Would you like to include images")   ;
 var returnImages = ``;
@@ -70,9 +68,6 @@ if (boolImages) {
         returnImages += setImages(i);
     }
 }
-// console.log(returnImages);
-
-// contribs 
 
 const setContribs = (i) => {
     const contribName = readline.question(`What is the name of contributor ${i + 1}? `);
@@ -88,27 +83,7 @@ if (boolCredits) {
     }
 }
 
-// toc 
-
-
-// Has a bug 
-const setTOC = (i) => {
-    const tocSection = readline.question(`What is the name of this table of content section ${i + 1}? `);
-    return `* [${tocSection}](#${tocSection.replaceAll(" ", "-").toLowerCase()})\n`;
-}
-
 const boolTOC = readline.keyInYNStrict("Would you like to include a Table of Contents?");
-var returnSections = ``;
-// if (boolTOC) {howToInstall
-//     // console.log("(An example would be description, installation, and usage sections")
-//     let numberOfSections = readline.question("How many sections? ")
-//     for (let i = 0; i < numberOfSections ; i++) {
-//         returnSections += setTOC(i);
-    // }
-
-    // returnSections +=  `* [Usage](#usage)\n`;
-//     returnSections += `* [Questions](#questions)\n`;
-// } 
 
 const boolTests = readline.keyInYNStrict("Would you like to include how to run the tests if there are any? ");
 var describeTests = ``;
@@ -124,10 +99,9 @@ let tocStatic = `
 ${boolTests ? "* [Tests](#tests)" : ""}
 ${boolCredits ? "* [Credits](#credits)" : ""}
 * [Questions](#questions)
-* [Contributing](#contributing)
 * [License](#license)
+* [Contributing](#contributing)
 `
-
 
 const readLineReturns = {
     "images": { 
@@ -138,10 +112,6 @@ const readLineReturns = {
         state: boolCredits,
         value: returnCredits,
     },
-    // "tableOfContents": {
-    //     state: boolTOC,
-    //     value: returnSections
-    // }
     "tableOfContents": {
         state: boolTOC,
         value: tocStatic
@@ -151,7 +121,6 @@ const readLineReturns = {
         value: describeTests
     }
 }
-
 
 const prompt = inquirer.createPromptModule();
 prompt([ 
@@ -192,7 +161,7 @@ prompt([
     "type": "list",
     "choices": [
         "Apache", "BSD3", "GNU",
-    "MIT", "MOZILLA", "COMMON", "ECLIPSE"]
+    "MIT", "MOZILLA", "ECLIPSE", "none"]
 }, {
     "name": "yearForLicense",
     "message": "Please pick a year for the license",
@@ -223,8 +192,8 @@ prompt([
 ]).then( (answers) => {
     let licenseBadge = renderLicenseLinkAndBadge([answers.chosenLicense]);
     let licenseSection = renderLicenseSection(answers.chosenLicense, answers.author, answers.yearForLicense);
-    let licnseInformationComplete = [licenseBadge, licenseSection]
-    let data = generateMarkdown([answers, readLineReturns, howToInstall, licnseInformationComplete]);
+    let licenseInformationCompleted = [licenseBadge, licenseSection]
+    let data = generateMarkdown([answers, readLineReturns, howToInstall, licenseInformationCompleted]);
 
     fs.writeFile(`${answers.readMeFileName}.md`, data, (err) => {
         if (err) {
@@ -239,10 +208,3 @@ prompt([
     console.log('An error occured, please try again');
     console.log(error);
 });
-
-
-
-// const imgPrompt = () => {
-
-// }
-
