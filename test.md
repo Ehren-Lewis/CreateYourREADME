@@ -7,8 +7,7 @@
   // ## Table Of Contents
 
   ## Table Of Contents
-
-  [About This Project](#About This Project)
+[About This Project](#About This Project)
 [How to Install](#How to Install)
 
   
