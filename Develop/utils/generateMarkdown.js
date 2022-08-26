@@ -37,6 +37,7 @@ function renderLicenseLinkAndBadge(license) {
     break;
   }
 
+  return licenseBadge;
 }
 
 // TODO: Create a function that returns the license section of README
@@ -204,7 +205,7 @@ function generateMarkdown(data) {
 
   You can reach me at my Github: [${answers.githubUsername}](${answers.linkToGithub})
 
-  ## OR
+  ### OR
 
   You can reach me at my [${answers.email}](mailto:${answers.email}) pertaining any other questions you may have
   
@@ -213,6 +214,8 @@ function generateMarkdown(data) {
   ${licenseInformation.licenseSection}
 
   ## Contributing
+
+  ${answers.contributing}
 `
   ;
 }

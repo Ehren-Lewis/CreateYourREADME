@@ -187,9 +187,14 @@ prompt([
 }, {
     "name": "issues",
     "message": "please describe any issues in the application",
-    "input": "input"
+    "type": "input"
+},  {
+    "name": "contributing",
+    "message": "how can individuals contribute on this application",
+    "type": "input"
 }
 ]).then( (answers) => {
+    console.log(answers.chosenLicense)
     let licenseBadge = renderLicenseLinkAndBadge([answers.chosenLicense]);
     let licenseSection = renderLicenseSection(answers.chosenLicense, answers.author, answers.yearForLicense);
     let licenseInformationCompleted = [licenseBadge, licenseSection]
