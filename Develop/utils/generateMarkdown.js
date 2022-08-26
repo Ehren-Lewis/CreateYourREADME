@@ -56,6 +56,14 @@ function generateMarkdown(data) {
 
   ${readLineReturns.contributors.value? readLineReturns.contributors.value : ""}
 
+  ${readLineReturns.tests.value ? `## Tests`: ""}
+
+  ${readLineReturns.tests.value ? readLineReturns.tests.value : ""}
+
+  ## Known Issues
+
+  ${answers.issues}
+
   ## Questions
 
   You can reach me at my Github: [${answers.githubUsername}](${answers.linkToGithub})

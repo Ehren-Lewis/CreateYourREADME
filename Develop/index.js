@@ -90,10 +90,11 @@ if (boolContribs) {
 
 // toc 
 
+
 // Has a bug 
 const setTOC = (i) => {
     const tocSection = readline.question(`What is the name of this table of content section ${i + 1}? `);
-    return `[${tocSection}](#${tocSection.replaceAll(" ", "-")})\n`;
+    return `* [${tocSection}](#${tocSection.replaceAll(" ", "-").toLowerCase()})\n`;
 }
 
 const boolTOC = readline.keyInYNStrict("Would you like to include a Table of Contents?");
@@ -104,7 +105,29 @@ if (boolTOC) {
     for (let i = 0; i < numberOfSections ; i++) {
         returnSections += setTOC(i);
     }
+
+    returnSections +=  `* [Usage](#usage)\n`;
+    returnSections += `* [Questions](#questions)\n`;
 } 
+
+const boolTests = readline.keyInYNStrict("Would you like to include how to run the tests if there are any?");
+var describeTests = ``;
+if (boolTests) {
+    describeTests = readline.question("Please input the description on how to test")
+}
+
+let tocStatic = `
+    * [About This Project](#about-this-project)
+    * [How to Install](#how-to-install)
+    * [Usage](#usage)
+    ${boolContribs ? "* [Tests](#contributors)" : ""}
+    ${boolTests ? "* [Tests](#tests)" : ""}
+    * [Known Issues](#known-issues)
+    * [Questions](#questions)
+
+
+`
+
 
 const readLineReturns = {
     "images": { 
@@ -115,9 +138,17 @@ const readLineReturns = {
         state: boolContribs,
         value: returnContribs,
     },
+    // "tableOfContents": {
+    //     state: boolTOC,
+    //     value: returnSections
+    // }
     "tableOfContents": {
         state: boolTOC,
-        value: returnSections
+        value: tocStatic
+    }, 
+    "tests": {
+        state: boolTests,
+        value: describeTests
     }
 }
 
@@ -172,19 +203,26 @@ prompt([
     "name": "email",
     "message": "What is your email addess?",
     "type": "input"
+}, {
+    "name": "readMeFileName",
+    "question": "enter the name of the file without the .md",
+    "type": "input",
+}, {
+    "name": "issues",
+    "question": "please describe any issues in the application",
+    "input": "input"
 }
 ]).then( (answers) => {
     let data = generateMarkdown([answers, readLineReturns, litest]);
-    fs.writeFile("test.md", data, (err) => {
+    fs.writeFile(`${answers.readMeFileName}.md`, data, (err) => {
         if (err) {
             console.log(err);
+            console.log("Please try again")
         } else {
             console.log("SUCCESS");
         }
     })
 })
-
-
 .catch( (error) => {
     console.log('An error occured, please try again');
     console.log(error);
