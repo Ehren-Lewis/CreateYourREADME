@@ -4,8 +4,8 @@
   Author: I am
   
   ## Table Of Contents
-*[About This Project](#about-this-project)
-*[How to Install](#how-to-install)
+* [About This Project](#about-this-project)
+* [How to Install](#how-to-install)
 
   
   ## About This Project
