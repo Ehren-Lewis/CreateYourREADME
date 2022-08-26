@@ -6,7 +6,10 @@
 // If there is no license, return an empty string
 
 function renderLicenseLinkAndBadge(license) {
-  if (license == "none") {return ""}
+  if (license == "none"){
+    console.log('in here');
+    return ""
+  }
 
   let licenseBadge = ``;
 
@@ -92,7 +95,6 @@ break;
 
 case "GNU":
 licenseFileInformation = `    
-<${name}>
 Copyright (C) <${year}>  <${name}>
 
 This program is free software: you can redistribute it and/or modify
@@ -156,6 +158,7 @@ break;
 
 function generateMarkdown(data) {
   const [answers, readLineReturns, howToInstall, licenseInformation]  = data;
+  console.log(`in here ${licenseInformation.licenseBadge}`);
  return `
 # ${answers.title}
 ${licenseInformation.licenseBadge}

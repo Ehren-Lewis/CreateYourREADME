@@ -194,7 +194,8 @@ prompt([
     "type": "input"
 }
 ]).then( (answers) => {
-    let licenseBadge = renderLicenseLinkAndBadge([answers.chosenLicense]);
+    let licenseBadge = renderLicenseLinkAndBadge(answers.chosenLicense);
+    console.log(licenseBadge);
     let licenseSection = renderLicenseSection(answers.chosenLicense, answers.author, answers.yearForLicense);
     let licenseInformationCompleted = {licenseBadge, licenseSection};
     let data = generateMarkdown([answers, readLineReturns, howToInstall, licenseInformationCompleted]);
