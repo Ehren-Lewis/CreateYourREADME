@@ -1,22 +1,25 @@
 
-  # trying
+  # Your mom
 
-  Author: this
+  Author: Your mom
   
+
+  // ## Table Of Contents
 
   ## Table Of Contents
 
+  [Description](#Description
 
-
+  
   ## About This Project
 
   undefined
 
-  so
+  to do your mom
 
-  lets
+  oh you know, the usual
 
-  see
+  oh I faced ample challenges
 
   
   ## How to Install
@@ -31,5 +34,13 @@
 
   ##Usage
 
-  happen
+  it was magnificent
+
+  ![alt1](./b)
+![alt2](./a)
+
+
+  ## Contributors
+
+  
   

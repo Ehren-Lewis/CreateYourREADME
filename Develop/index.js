@@ -2,7 +2,7 @@
 import readline from 'readline-sync';
 import inquirer from 'inquirer';
 import fs, { read, realpath } from 'fs';
-
+import generateMarkdown from './utils/generateMarkdown.js';
 const questions = [
     // Title input
     "What is the title of the application?\n",
@@ -43,7 +43,7 @@ function init() {
 // Function call to initialize app
 init();
 
-const howToInstall = [
+const litest =
     `
     1. Navigate to the code repository
     2. Press the green code button, located near the about section
@@ -51,7 +51,9 @@ const howToInstall = [
     4. Depending on download method, use Git, executable, or the desktop application to open the content files.
     5. All of the content of the repository will be available after completion of the previous state.
     `
-];
+;
+
+
 
 const setImages = (i) => {
     const currentAlt = readline.question(`What is the alt text? for image ${ i+ 1} `)
@@ -73,7 +75,7 @@ if (boolImages) {
 // contribs 
 
 const setContribs = (i) => {
-    const contribName = readline.question(`What is the name of contributor ${i}? `);
+    const contribName = readline.question(`What is the name of contributor ${i + 1}? `);
     return `${contribName}\n`;
 }
 
@@ -87,26 +89,40 @@ if (boolContribs) {
 }
 
 // toc 
+
+// Has a bug 
 const setTOC = (i) => {
-    const tocSection = readline.question(`What is the name of this table of content section? ${i}? `);
-    return `[${tocSection}](#${tocSection}\n`;
+    const tocSection = readline.question(`What is the name of this table of content section ${i + 1}? `);
+    return `[${tocSection}](#${tocSection})\n`;
 }
 
 const boolTOC = readline.keyInYNStrict("Would you like to include a Table of Contents?");
 var returnSections = ``;
 if (boolTOC) {
-    console.log("(An example would be description, installation, and usage sections")
+    // console.log("(An example would be description, installation, and usage sections")
     let numberOfSections = readline.question("How many sections? ")
-    for (let i = 0; i < returnSections ; i++) {
+    for (let i = 0; i < numberOfSections ; i++) {
         returnSections += setTOC(i);
     }
 } 
 
 const readLineReturns = {
-    boolImages: returnImages,
-    boolContribs: returnContribs,
-    boolTOC: returnSections
+    "images": { 
+        state: boolImages,
+        value: returnImages,
+    },
+    "contributors": {
+        state: boolContribs,
+        value: returnContribs,
+    },
+    "tableOfContents": {
+        state: boolTOC,
+        value: returnSections
+    }
 }
+
+console.log(readLineReturns.tableOfContents.state);
+
 
 const prompt = inquirer.createPromptModule();
 prompt([ 
@@ -137,24 +153,10 @@ prompt([
 },  {"name": "futureGoals",
     "message": questions[6],
     "type": "input"
-}
-,  
- {
-    "name": "isTableOfContents", // type: confirm
-    "message": questions[7],
-    "type": "confirm"
-},  {
+},   {
     "name": "describeUsage",
     "message": questions[8],
     "type": "input"
-}, {
-    "name": "isImages",
-    "message": questions[9],
-    "type": "confirm"
-}, {
-    "name": "isContribs",
-    "message": questions[10],
-    "type": "confirm",
 }, {
     "name": "chosenLicense",
     "message": questions[11],
@@ -162,12 +164,14 @@ prompt([
     "choices": ["MIT", "Not MIT"]
 }
 ]).then( (answers) => {
-    // let data = generateMarkdown([answers, litest]);
-    console.log(answers);
-    if (answers.isImages) {
-        var numberOfImages = readline.question("how many images would you like?\n");
-        console.log(numberOfImages);
-    }
+    let data = generateMarkdown([answers, readLineReturns, litest]);
+    fs.writeFile("test.md", data, (err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("SUCCESS");
+        }
+    })
 })
 
 

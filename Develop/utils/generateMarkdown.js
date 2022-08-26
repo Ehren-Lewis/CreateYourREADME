@@ -20,20 +20,20 @@ function renderLicenseSection(license) {
 
 function generateMarkdown(data) {
   // return `# ${data.title}
-  const [answers, howToInstall]  = data;
+  const [answers, readLineReturns, howToInstall]  = data;
 
-  const contribBool = Boolean(answers.letContribs)
-
-  console.log( `
+ return `
   # ${answers.title}
 
   Author: ${answers.author}
   
 
-  ## Table Of Contents
+  // ## Table Of Contents
 
+  ${readLineReturns.tableOfContents.state ? "## Table Of Contents" : ""}
 
-
+  ${readLineReturns.tableOfContents.state ? readLineReturns.tableOfContents.value : ""}
+  
   ## About This Project
 
   ${answers.desrcibeFunction}
@@ -49,42 +49,22 @@ function generateMarkdown(data) {
 
   ${howToInstall}
 
-  ##Usage
+  ## Usage
 
   ${answers.describeUsage}
 
-  
+  ${readLineReturns.images.state ? readLineReturns.images.value : ""}
 
-  ${contribBool ? `## Contributors` : ""}
+  ${readLineReturns.contributors.value ? `## Contributors` : ""}
 
-  ${contribBool? returnContribs : ""}
-
-
-
-
-
+  ${readLineReturns.contributors.state? readLineReturns.contributors.value : ""}
   ` 
-  );
+  ;
 }
 
-const spreadHowTo = (arr) => {
+// const spreadHowTo = (arr) => {
 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// }
 
 // module.exports = generateMarkdown;
 export default generateMarkdown;
