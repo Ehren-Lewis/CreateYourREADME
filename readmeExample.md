@@ -1,8 +1,8 @@
 
-# This
+# Your free README
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Author: is
+Author: Ehren Lewis
 
 ## Table Of Contents
 
@@ -20,13 +20,13 @@ Author: is
 
 ## About This Project
 
-once
+It generates an automatic readme for any individual
 
-again
+My motivation of this exact instance is to provide insight to the final result of this generator
 
-a
+I used this information to allow for robust command line applications to solve any and all developer needs
 
-simple
+Using the asynchronous feature of Inquirer
 
 
 ## How to Install
@@ -41,13 +41,15 @@ simple
 
 ## Usage
 
-no
+Use this project to make your developing life more efficient by not having to worry about creating a readme
 
+![alt1](./a)
+![alt2](./b)
 
 
 ## Known Issues
 
-no
+Hitting enter when answering prompts will allow blank information to be passed through
 
 
 
@@ -59,18 +61,18 @@ no
 
 ## Questions
 
-You can reach me at my Github: [no](no)
+You can reach me at my Github: [Ehren-Lewis](https://github.com/Ehren-Lewis)
 
 ### OR
 
-You can reach me at my [no](mailto:no) pertaining any other questions you may have
+You can reach me at my [email@email.com](mailto:email@email.com) pertaining any other questions you may have
 
 ## License
 
 
 MIT License
 
-Copyright (c) 2022 [is]
+Copyright (c) 2022 [Ehren Lewis]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -93,4 +95,4 @@ SOFTWARE.
 
 ## Contributing
 
-no
+They can contribute by contacting me through my Github or my email

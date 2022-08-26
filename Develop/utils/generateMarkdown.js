@@ -48,7 +48,6 @@ function renderLicenseSection(license, name, year) {
   if (license == "none") {return ""}
 
   let licenseFileInformation = ``;
-  // let licenseFileName = ``;
   switch (license) {
 
 case "APACHE":
@@ -158,16 +157,15 @@ break;
 
 function generateMarkdown(data) {
   const [answers, readLineReturns, howToInstall, licenseInformation]  = data;
-  console.log(`in here ${licenseInformation.licenseBadge}`);
  return `
 # ${answers.title}
 ${licenseInformation.licenseBadge}
 
 Author: ${answers.author}
 
-${readLineReturns.tableOfContents.value ? "## Table Of Contents" : ""}
+${readLineReturns.tableOfContents.state ? "## Table Of Contents" : ""}
 
-${readLineReturns.tableOfContents.value ? readLineReturns.tableOfContents.value : ""}
+${readLineReturns.tableOfContents.state ? readLineReturns.tableOfContents.value : ""}
 
 ## About This Project
 

@@ -1,9 +1,14 @@
 
+// Importing the node modules 
 import readline from 'readline-sync';
 import inquirer from 'inquirer';
 import fs, { read, realpath } from 'fs';
+
+// importing custom functions 
 import utilsFunctions from './utils/generateMarkdown.js';
 const {generateMarkdown, renderLicenseLinkAndBadge, renderLicenseSection } = utilsFunctions;
+
+// Static questions and element defining
 const questions = [
     // Title input
     "What is the title of the application?\n",
@@ -33,17 +38,6 @@ const questions = [
     "Please enter your email address\n",
 ];
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
-
-// TODO: Create a function to initialize app
-function init() {
-
-}
-
-// Function call to initialize app
-init();
-
 const howToInstall =
     `
     1. Navigate to the code repository
@@ -54,6 +48,9 @@ const howToInstall =
     `
 ;
 
+
+// Use readlines and callback functions to handle readline-sync calls 
+// This is the dynamic aspect of the readme generation 
 const setImages = (i) => {
     const currentAlt = readline.question(`What is the alt text? for image ${ i+ 1} `)
     const linkToImage = readline.question(`What is the link to image ${i + 1} `);
@@ -91,6 +88,8 @@ if (boolTests) {
     describeTests = readline.question("Please input the description on how to test: ")
 }
 
+// creating the table of contents, there will always 
+// be default sections but also created dynamic sections 
 let tocStatic = `
 * [About This Project](#about-this-project)
 * [How to Install](#how-to-install)
@@ -103,6 +102,7 @@ ${boolCredits ? "* [Credits](#credits)" : ""}
 * [Contributing](#contributing)
 `
 
+// Puts all of the dynamic readline responses into an object 
 const readLineReturns = {
     "images": { 
         state: boolImages,
@@ -122,8 +122,10 @@ const readLineReturns = {
     }
 }
 
+// creates the inquirer prompt 
 const prompt = inquirer.createPromptModule();
 prompt([ 
+    // all questions to be asked to the user that aren't dynamic 
 {
     "name": "title",
     "message": questions[0],
@@ -194,12 +196,16 @@ prompt([
     "type": "input"
 }
 ]).then( (answers) => {
+
+    // Gathers all license information 
     let licenseBadge = renderLicenseLinkAndBadge(answers.chosenLicense);
-    console.log(licenseBadge);
     let licenseSection = renderLicenseSection(answers.chosenLicense, answers.author, answers.yearForLicense);
     let licenseInformationCompleted = {licenseBadge, licenseSection};
+
+    // Generates the markdown based on all information 
     let data = generateMarkdown([answers, readLineReturns, howToInstall, licenseInformationCompleted]);
 
+    // writes to a file of specificed name
     fs.writeFile(`${answers.readMeFileName}.md`, data, (err) => {
         if (err) {
             console.log(err);
@@ -209,6 +215,7 @@ prompt([
         }
     })
 })
+// handles some inquirer errors just in case 
 .catch( (error) => {
     console.log('An error occured, please try again');
     console.log(error);
