@@ -36,7 +36,6 @@ function renderLicenseLinkAndBadge(license) {
     licenseBadge = `[![License](https://img.shields.io/badge/License-EPL_1.0-red.svg)](https://opensource.org/licenses/EPL-1.0)`;
     break;
   }
-
   return licenseBadge;
 }
 
@@ -157,65 +156,64 @@ break;
 
 function generateMarkdown(data) {
   const [answers, readLineReturns, howToInstall, licenseInformation]  = data;
-
  return `
-  # ${answers.title}
-  ${licenseInformation.licenseBadge}
+# ${answers.title}
+${licenseInformation.licenseBadge}
 
-  Author: ${answers.author}
-  
-  ${readLineReturns.tableOfContents.value ? "## Table Of Contents" : ""}
+Author: ${answers.author}
 
-  ${readLineReturns.tableOfContents.value ? readLineReturns.tableOfContents.value : ""}
-  
-  ## About This Project
+${readLineReturns.tableOfContents.value ? "## Table Of Contents" : ""}
 
-  ${answers.describeFunction}
+${readLineReturns.tableOfContents.value ? readLineReturns.tableOfContents.value : ""}
 
-  ${answers.describeMotivation}
+## About This Project
 
-  ${answers.describeTechnologies}
+${answers.describeFunction}
 
-  ${answers.describeChallenges}
+${answers.describeMotivation}
 
-  
-  ## How to Install
+${answers.describeTechnologies}
 
-  ${howToInstall}
+${answers.describeChallenges}
 
-  ## Usage
 
-  ${answers.describeUsage}
+## How to Install
 
-  ${readLineReturns.images.value ? readLineReturns.images.value : ""}
+${howToInstall}
 
-  ## Known Issues
+## Usage
 
-  ${answers.issues}
+${answers.describeUsage}
 
-  ${readLineReturns.tests.value ? `## Tests`: ""}
+${readLineReturns.images.value ? readLineReturns.images.value : ""}
 
-  ${readLineReturns.tests.value ? readLineReturns.tests.value : ""}
+## Known Issues
 
-  ${readLineReturns.contributors.value ? `## Credits` : ""}
+${answers.issues}
 
-  ${readLineReturns.contributors.value? readLineReturns.contributors.value : ""}
+${readLineReturns.tests.value ? `## Tests`: ""}
 
-  ## Questions
+${readLineReturns.tests.value ? readLineReturns.tests.value : ""}
 
-  You can reach me at my Github: [${answers.githubUsername}](${answers.linkToGithub})
+${readLineReturns.contributors.value ? `## Credits` : ""}
 
-  ### OR
+${readLineReturns.contributors.value? readLineReturns.contributors.value : ""}
 
-  You can reach me at my [${answers.email}](mailto:${answers.email}) pertaining any other questions you may have
-  
-  ## License
+## Questions
 
-  ${licenseInformation.licenseSection}
+You can reach me at my Github: [${answers.githubUsername}](${answers.linkToGithub})
 
-  ## Contributing
+### OR
 
-  ${answers.contributing}
+You can reach me at my [${answers.email}](mailto:${answers.email}) pertaining any other questions you may have
+
+## License
+
+${licenseInformation.licenseSection}
+
+## Contributing
+
+${answers.contributing}
 `
   ;
 }

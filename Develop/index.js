@@ -194,10 +194,9 @@ prompt([
     "type": "input"
 }
 ]).then( (answers) => {
-    console.log(answers.chosenLicense)
     let licenseBadge = renderLicenseLinkAndBadge([answers.chosenLicense]);
     let licenseSection = renderLicenseSection(answers.chosenLicense, answers.author, answers.yearForLicense);
-    let licenseInformationCompleted = [licenseBadge, licenseSection]
+    let licenseInformationCompleted = {licenseBadge, licenseSection};
     let data = generateMarkdown([answers, readLineReturns, howToInstall, licenseInformationCompleted]);
 
     fs.writeFile(`${answers.readMeFileName}.md`, data, (err) => {
