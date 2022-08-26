@@ -3,12 +3,9 @@
 
   Author: I am
   
-
-  // ## Table Of Contents
-
   ## Table Of Contents
-[About This Project](#About This Project)
-[How to Install](#How to Install)
+[About This Project](#about-this-project)
+[How to Install](#how-to-install)
 
   
   ## About This Project

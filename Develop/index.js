@@ -93,7 +93,7 @@ if (boolContribs) {
 // Has a bug 
 const setTOC = (i) => {
     const tocSection = readline.question(`What is the name of this table of content section ${i + 1}? `);
-    return `[${tocSection}](#${tocSection})\n`;
+    return `[${tocSection}](#${tocSection.replaceAll(" ", "-")})\n`;
 }
 
 const boolTOC = readline.keyInYNStrict("Would you like to include a Table of Contents?");

@@ -27,9 +27,6 @@ function generateMarkdown(data) {
 
   Author: ${answers.author}
   
-
-  // ## Table Of Contents
-
   ${readLineReturns.tableOfContents.value ? "## Table Of Contents" : ""}
 
   ${readLineReturns.tableOfContents.value ? readLineReturns.tableOfContents.value : ""}
