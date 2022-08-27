@@ -42,8 +42,8 @@ Some of the challenges faced was finding the proper information for the licenses
 
 This application is designed to be used by software developers to increase their efficiency by not having to worry about having to build their README file from scratch. To use this application, follow the installtion process. Once installed, load the files in your text editor or through the command line. You will then be prompted, both dynamically and statically, for various topics pertaining what constitutes a README. A great example of this auto generator is this README, which was generated with it. Finally, once all prompts have been answered and the file name has been specified, the application will write to the file of your choice, finishing out a fully functional README
 
-![Image showing a snippet of the prompts](Develop\Assets\Images\readmeSnippetOne.png)
-![Image showing the full final result of the readme generator on github](Develop\Assets\Images\fullReadmeDemo.png)
+![Image showing a snippet of the prompts](./Develop/Assets/Images/readmeSnippetOne.png)
+![Image showing the full final result of the readme generator on github](./Develop/Assets/Images/fullReadmeDemo.png)
 
 Link to the demo video: https://watch.screencastify.com/v/X5OEsGH26VMpPJCaY47p
 

@@ -1,10 +1,5 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
-// function renderLicenseBadge(license) {}
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-
+// This function used a switch to determine which badge link to return 
 function renderLicenseLinkAndBadge(license) {
   if (license == "none"){
     console.log('in here');
@@ -42,8 +37,7 @@ function renderLicenseLinkAndBadge(license) {
   return licenseBadge;
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
+// Function that renders all of the text with the associated license 
 function renderLicenseSection(license, name, year) {
   if (license == "none") {return ""}
 
@@ -151,10 +145,7 @@ break;
   return licenseFileInformation;
 }
 
-// TODO: Create a function to generate markdown for README
-
-// Need to add boolImages, boolContribs, boolTOC, boolLicense
-
+// Function that puts all the data into a markdown format 
 function generateMarkdown(data) {
   const [answers, readLineReturns, howToInstall, licenseInformation]  = data;
  return `
@@ -219,5 +210,7 @@ ${answers.contributing}
   ;
 }
 
+
+// Exports in an object to use every function available 
 export default {generateMarkdown, renderLicenseLinkAndBadge, renderLicenseSection};
 
